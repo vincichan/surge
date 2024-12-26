@@ -1,0 +1,218 @@
+[General]
+# 通用设置
+# 
+# ---延迟设置---
+# > 网络访问延迟测速URL
+internet-test-url = http://cp.cloudflare.com/generate_204
+# > 代理延迟测速URL
+proxy-test-url = http://cp.cloudflare.com/generate_204
+# > 测试超时（秒）
+test-timeout = 3
+# 
+# ---GeoIP数据库---
+# > 自定义GeoIP数据库
+geoip-maxmind-url = https://raw.githubusercontent.com/JMVoid/ipip2mmdb/release/Country.mmdb
+# 
+# ---WiFi助理---
+# 在Wi-Fi网络不佳时尝试使用数据网络建立连接
+# ture=开启，false=关闭
+wifi-assist = false
+# 
+# ---WiFi访问---
+# > 允许WiFi访问
+# >> iOS，若允许远程访问将false改为true
+allow-wifi-access = false
+wifi-access-http-port = 6152
+wifi-access-socks5-port = 6153
+# >> macOS，若允许远程访问将127.0.0.1改为0.0.0.0
+http-listen = 0.0.0.0
+socks5-listen = 0.0.0.0
+# 
+# ---远程控制器---
+# > 允许Surge请求查看器或Surge CI进行管理控制
+# @前内容为密码
+external-controller-access = 123456@127.0.0.1:6170
+# > HTTP API
+# 可以让另一个App或者设备通过HTTP API控制Surge功能
+# @前内容为密码
+http-api = 123456@127.0.0.1:6166
+# > 远程控制器开关
+http-api-tls = true
+http-api-web-dashboard = true
+# 
+# ---兼容性设置---
+# > IPv6 支持（默认关闭）
+ipv6 = ture
+# > 兼容模式(仅iOS)
+# compatibility-mode = 0
+# > 排除简单主机名
+exclude-simple-hostnames = true
+# > 跳过代理
+skip-proxy = localhost, *.local, 10.0.0.0/8, 100.64.0.0/10, 127.0.0.1/32, 169.254.0.0/16, 172.16.0.0/12, 192.168.0.0/16,192.168.122.1/32, 193.168.0.1/32, 224.0.0.0/4, 240.0.0.0/4, 255.255.255.255/32, *.crashlytics.com, passenger.t3go.cn, captive.apple.com, seed-sequoia.siri.apple.com, sequoia.apple.com, injections.adguard.org, local.adguard.org
+# 
+# ---DNS 服务器---
+# 如无必要不建议使用DNS over HTTPS
+dns-server = 119.29.29.29, 223.5.5.5, 8.8.8.8, system
+# > 从/etc/hosts读取DNS记录
+read-etc-hosts = true
+# 
+# ---高级设置---
+# > 日志级别
+loglevel = notify
+# > 当遇到REJECT策略时返回错误页
+show-error-page-for-reject = true
+# > Always Real IP Hosts
+# 当Surge VIF处理DNS问题时，要求Surge返回真实IP地址
+always-real-ip = *.msftconnecttest.com, *.msftncsi.com, *.srv.nintendo.net, *.stun.playstation.net, xbox.*.microsoft.com, *.xboxlive.com, *.logon.battlenet.com.cn, *.logon.battle.net, stun.l.google.com
+# > TCP Force HTTP Hosts
+# 让Surge把TCP连接当作HTTP请求来处理
+# Surge HTTP引擎将处理这些请求
+# 所有的高级功能，如捕获、重写和脚本等都可以使用
+force-http-engine-hosts = *.ott.cibntv.net
+# > UDP转发
+# 如果没有代理服务器支持UDP转发
+# 可修改为direct或注释本条
+# 需注意同一目标主机名TCP请求与UDP请求的源地址不同所造成的隐私及安全风险
+udp-policy-not-supported-behaviour = reject
+
+[Proxy Group]
+# 下载配置文件后请自行把https://sub.store/download/%E6%B7%98%E6%B0%94%E5%85%94?target=SurgeMac替换为你自己的机场订阅链接或Sub-Store订阅链接
+PROXY = select, policy-path=https://sub.store/download/%E6%B7%98%E6%B0%94%E5%85%94?target=SurgeMac
+AutoHK = url-test, policy-path=https://sub.store/download/%E6%B7%98%E6%B0%94%E5%85%94?target=SurgeMac, update-interval=0, policy-regex-filter=(香港|港|hong|HK|HKG|🇭🇰), interval=600, timeout=3, hidden=true
+🇺🇲 美国节点 = select, policy-path=https://sub.store/download/%E6%B7%98%E6%B0%94%E5%85%94?target=SurgeMac, update-interval=0, policy-regex-filter=(美|美国|美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|🇺🇸|US)
+🇭🇰 香港节点 = select, policy-path=https://sub.store/download/%E6%B7%98%E6%B0%94%E5%85%94?target=SurgeMac, update-interval=0, policy-regex-filter=(香港|港|hong|HK|HKG|🇭🇰)
+🇨🇳 台湾节点 = select, policy-path=https://sub.store/download/%E6%B7%98%E6%B0%94%E5%85%94?target=SurgeMac, update-interval=0, policy-regex-filter=(台|台湾|TW|Taiwan|Taipei)
+🇯🇵 日本节点 = select, policy-path=https://sub.store/download/%E6%B7%98%E6%B0%94%E5%85%94?target=SurgeMac, update-interval=0, policy-regex-filter=(日本|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|JP|Japan)
+🇸🇬 狮城节点 = select, policy-path=https://sub.store/download/%E6%B7%98%E6%B0%94%E5%85%94?target=SurgeMac, update-interval=0, policy-regex-filter=(狮城|新加坡|🇸🇬|SG|Singapore)
+🎬 国际媒体 = select, 🇺🇲 美国节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🐟 漏网之鱼
+🌏 全球加速 = select, 🇺🇲 美国节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🐟 漏网之鱼
+📺 哔哩哔哩 = select, DIRECT, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🐟 漏网之鱼
+📟 电报消息 = select, 🇺🇲 美国节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🐟 漏网之鱼
+🇨🇳 国内访问 = select, DIRECT, 🐟 漏网之鱼
+🚫 广告屏蔽 = select, REJECT, PROXY, DIRECT # hidden=true
+🤖 ChatGPT = select, 🇺🇲 美国节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🐟 漏网之鱼
+📺 YouTube = select, 🇺🇲 美国节点, 🇭🇰 香港节点,  🇨🇳 台湾节点,  🇯🇵 日本节点, 🇸🇬 狮城节点, 🐟 漏网之鱼
+🎵 Spotify = select, DIRECT, 🇺🇲 美国节点, 🇭🇰 香港节点, 🇨🇳 台湾节点, 🇯🇵 日本节点, 🇸🇬 狮城节点, 🐟 漏网之鱼
+🐟 漏网之鱼 = select, PROXY, AutoHK, DIRECT
+
+[Rule]
+DOMAIN,bw.erdongchan.cn,🇭🇰 香港节点
+# ---域名规则---
+# > 耳东橙导航站
+DOMAIN-SUFFIX,erdon.cc,🐟 漏网之鱼
+# > 抖音本地分流
+DOMAIN-SUFFIX,snssdk.com,DIRECT
+DOMAIN-SUFFIX,amemv.com,DIRECT
+# > 其它
+DOMAIN-SUFFIX,local,DIRECT
+DOMAIN-SUFFIX,kuaishou.com,DIRECT
+# ---进程规则---
+# > 只在macOS生效，iOS会自动忽略这个类型的规则
+PROCESS-NAME,UUBooster,DIRECT
+# ---逻辑规则---
+# > AND规则:当所含规则全部匹配时，会被触发
+AND,((PROTOCOL,UDP), (DEST-PORT,443)),REJECT-NO-DROP
+# ---规则集----
+# ---内置规则集---
+# SYSTEM
+# > 包含了绝大多数来自macOS和iOS系统本身所发送的请求
+RULE-SET,SYSTEM,DIRECT
+# ---远程规则集---
+# > 去广告
+# Advertising 广告
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising.list,🚫 广告屏蔽
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Advertising/Advertising_Domain.list,🚫 广告屏蔽
+# Privacy 隐私
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy_Domain.list,🚫 广告屏蔽
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Privacy/Privacy_Domain.list,🚫 广告屏蔽
+# Hijacking 运营商劫持或恶意网站
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Hijacking/Hijacking.list,🚫 广告屏蔽
+# > 海外流媒体
+# YouTube
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/YouTube/YouTube.list,📺 YouTube
+# Spotify
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Spotify/Spotify.list,🎵 Spotify
+# > 海外流媒体总规则
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/GlobalMedia/GlobalMedia.list,🌏 全球加速
+# > 国内媒体
+# Bilibili
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/BiliBili/BiliBili.list,📺 哔哩哔哩
+# > 软件&服务
+# Telegram
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Telegram/Telegram.list,📟 电报消息
+# Mainland 国内访问
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/China/China.list,🇨🇳 国内访问
+# Global 全球加速
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Global/Global.list,🎬 国际媒体
+DOMAIN-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Surge/Global/Global_Domain.list,🎬 国际媒体
+# ---IP地址规则---
+# > GeoIP China
+GEOIP,CN,DIRECT
+# ---Final规则---
+# > 必须写在所有其他类型的规则之后
+# > 当某条请求不匹配以上任何一条规则，则与FINAL规则匹配
+FINAL,🐟 漏网之鱼,dns-failed
+
+[Host]
+# ---定义本地DNS记录---
+# 该功能等同于 /etc/hosts，加上了泛解析和别名支持。
+# > Firebase Cloud Messaging
+mtalk.google.com = 108.177.125.188
+# > Google Dl
+dl.google.com = server:119.29.29.29
+dl.l.google.com = server:119.29.29.29
+update.googleapis.com = server:119.29.29.29
+# > PlayStation
+*.dl.playstation.net = server:119.29.29.29
+# > 淘宝
+*.taobao.com = server:223.5.5.5
+# > 天猫
+*.tmall.com = server:223.5.5.5
+# > 阿里云
+*.alicdn.com = server:223.5.5.5
+*.aliyun.com = server:223.5.5.5
+# > 腾迅
+*.tencent.com = server:119.29.29.29
+# > 腾讯QQ
+*.qq.com = server:119.29.29.29
+# > 微信
+*.weixin.com = server:119.29.29.29
+*.qpic.cn = server:119.29.29.29
+# > 京东
+*.jd.com = server:119.29.29.29
+# > 哔哩哔喱
+*.bilibili.com = server:119.29.29.29
+hdslb.com = server:119.29.29.29
+# > 网易
+*.163.com = server:119.29.29.29
+*.126.com = server:119.29.29.29
+*.126.net = server:119.29.29.29
+*.127.net = server:119.29.29.29
+*.netease.com = server:119.29.29.29
+# > 小米
+*.mi.com = server:119.29.29.29
+*.xiaomi.com = server:119.29.29.29
+# 解锁了「模块」功能的用户可以使用 General.sgmodule 后可移除 [URL Rewrite] 及 [MITM] 的「hostname = www.google.cn,api.abema.io」部分
+# 建议使用 General.sgmodule，其他 .sgmodule 按需加入
+# 未解锁「模块」功能的用户不要删除以下内容，参照
+# (https://github.com/DivineEngine/Profiles/tree/master/Surge)使用快捷指令更新相关内容。
+
+[URL Rewrite]
+# 有两种重定向方式: 'header' 和 '302'
+# 建议用模块
+
+[MITM]
+skip-server-cert-verify = true
+ca-passphrase = 9D97CE2B
+ca-p12 = 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
+
+[Script]
+# 显示运行时间及MitM等功能开关状态
+EDC_Surge-Panel = type=generic,script-path=https://raw.githubusercontent.com/erdongchanyo/Rules/main/Surge/Panels/EDC_Surge-Panel.js,argument=icon=crown.fill&color=#f6c970
+
+[Panel]
+# macOS不生效
+# > EDC_Surge-Panel
+# 显示运行时间及MitM等功能开关状态
+# 点击刷新为重载配置
+EDC_Surge-Panel = script-name=EDC_Surge-Panel,update-interval=1
